@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input type 날짜, 시간</title>
+</head>
+<body>
+    <h3><a href="../index.html">상위폴더로 돌아가기</a></h3>
+    <h1>특정형식으로 선택할 수 있는 뷰를 제공</h1>
+    <form action="">
+        <div>
+            <label for="d1">Date : </label><br>
+            <input type="date" name="" id="d1" min="2022-03-01" max="2022-03-20" value="2022-03-15">
+        </div>
+        <div>
+            <label for="d2">Date time : </label><br>
+            <input type="datetime" name="d2" id="d2">
+        </div>
+        <div>
+            <label for="d3">Datetime-local : </label><br>
+            <input type="datetime-local" name="test_datetime" id="d3">
+        </div>
+        <div>
+            <label for="t1">time : </label><br>
+            <input type="time" name="t1" id="t1">
+        </div>    
+        <div>
+            <label for="m1">Month : </label><br>
+            <input type="month" name="m1" id="m1" > <!-- 형식: 2022-03 다시확인 -->
+        </div>  
+        <div>
+            <label for="w1">Week : </label><br>
+            <input type="week" name="w1" id="w1" > <!-- 형식:2022-W12 다시 확인 -->
+        </div>     
+        <button type="submit">전송</button>           
+        </form>
+        <h3>2022-03-16 형식의 문자모양이지만 정확한 수치값이다</h3>
+        <h3>그래서 min, max와 같은 수치 속성적용이 가능하다</h3>  
+        <h3>뷰에서 제공되는 데이터가 서버측으로 어떤 형식으로 전달되는가를 아는 것이 중요!</h3>  
+        <!-- datetime-local은 2022-03-16T17%3A31 형식으로 찍힌다.(T=time, %3A=:) 서버에서 받는 값은 "2022-03-16T17:31" -->
+</body>
+</html>
