@@ -1,0 +1,22 @@
+h1 {
+    color: darkblue;
+  }
+  
+  ol {
+    list-style: upper-roman;
+    margin-left: 50px;
+  }
+  
+  li {
+    font-size: 1.5em;
+  }
+  a {
+    text-decoration: none;  
+  }
+  a:hover {
+    font-size: 1.75em;
+    background-color: gainsboro;
+  }
+  .ol-list {
+    background-color: bisque;
+  }
