@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input type number</title>
+</head>
+<body>
+    <h3><a href="../index.html">상위폴더로 돌아가기</a></h3>
+    <h1>숫자만 입력이 가능한 타입, 증감 클릭 기능 제공</h1>
+    <form action="">
+        <div>
+            <laber for="n1">숫자 입력란 : </laber>
+            <input type="number" name="" id="n1" value="1234">
+        </div>
+        <div>
+            <laber for="n1">숫자 입력란2 : </laber>
+            <input type="number" name="" id="n2" value="1234" readonly>    
+        </div>
+        <div>
+            <laber for="n1">숫자 입력란3 : </laber>
+            <input type="number" name="" id="n3" max="1000" min="0">
+        </div>
+        <button type="submit">전송</button>
+    </form>
+    <h3>사용자가 임의의 입력은 가능하나 전송시 속성을 모두 유효성 검사함</h3>
+    <!-- name은 서버로 넘겨주는 것이기 때문에 지금은 비워둠, 예를 들어 아이디면 id_num, 가격이면 price, 나이면 age등등으로 씀-->
+</body>
+</html>
