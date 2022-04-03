@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>의사 선택자</title>
+    <style>
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        a:hover {
+            border-radius: 10px;
+            background-color: antiquewhite;
+            color:blueviolet;
+        }
+        a:link {
+            font-size: 1.5em;
+        }
+        a:active {
+            color: tomato;
+        }
+        a:visited {
+            /* a태그에 기본 배경색이 있어야만 의사선택자 적용*/
+            /* background-color: rebeccapurple; */
+        }
+        ul li:first-child{ /* li의 first-child와 a의 차이를 주의할 것 */
+            color: darkolivegreen;
+        }
+        ul li:last-child{
+            color: darkorange;
+        }
+        ol li:nth-child(odd){
+            /* odd, 2n+1 : 홀수, even, 2n : 짝수 선택
+            괄호안의 파라미터에는 수열공식이나 숫자를 넣을 수 있다 */
+            color: red;
+        }
+        li::after {
+            content: " 번째";
+        }
+        ol li::before {
+            content: " LI 태그 "
+        }
+        li.links a::after {
+            content: "로 이동하기"
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        대상 노드에 이벤트나 효과를 적용하게 된다는 가정하에 만들어지는 선택자
+    </h1>
+    <h3>
+        <pre>
+        <em>presentation tag</em>
+        공백, 엔터 효과 그대로 적용, 내부에서 작성된 태그도 그대로 작용
+        인용구, 시, 가사 등을 표현할 때 주로 사용
+        a:hover MUST come after a:link and a:visited
+        a:active MUST come after a:hover
+        </pre>
+    </h3>
+    <ul>
+        <li class="links">
+            <a href="https://www.naver.com">네이버</a>
+            (http://www.naver.com)
+        </li>
+        <li class="links">
+            <a href="https://www.daum.net">다음</a>
+        </li>
+        <li class="links">
+            <a href="http://www.google.com">구글</a>
+        </li>
+        <li class="links">
+            <a href="http://www.nate.com">네이트</a>
+    </ul>
+    <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ol>
+</body>
+</html>
