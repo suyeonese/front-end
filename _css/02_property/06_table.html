@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table CSS</title>
+    <style>
+        table {
+            width: 100%; /* 가로방향의 컨텐츠의 양이 충분(브라우저 값 기준)해야 함 */
+            /* min-width: 800px; 이 방법을 추천*/
+            /* width: 500px; px수치는 비추천*/
+            border: 1px solid #777;
+            border-collapse: collapse;
+        }
+        table tr td {
+            /* border: 1px solid black; */
+        }
+        thead, th {
+            background-color: tomato;
+            color: white;
+        }        
+        tbody td {
+            height: 50px;
+            vertical-align: middle;
+            /* border-top: 1px solid #777; */
+        }
+        tfoot td {
+            text-align: center;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: thistle;
+            border-top: 1px solid #777;
+        }
+        tbody tr:hover {
+            background-color: teal;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>테이블관련 CSS는 border와 header의 스타일링을 먼저 생각한다</h1>
+    <div style="overflow-x: scroll;">
+    <table>
+        <thead>
+            <tr>
+                <th>파트</th>
+                <th>기간</th>
+                <th>프로젝트</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Front</td>
+                <td>1.5 개월</td>
+                <td>JS + Api Server(php)
+                    JS + Api Server(php)
+                    JS + Api Server(php)
+                    JS + Api Server(php)
+                </td>
+                <td>Front</td>
+                <td>1.5 개월</td>
+                <td>JS + Api Server(php)
+                    JS + Api Server(php)
+                    JS + Api Server(php)
+                    JS + Api Server(php)
+                </td>
+                <td>Front</td>
+                <td>1.5 개월</td>
+                <td>JS + Api Server(php)
+                    JS + Api Server(php)
+                    JS + Api Server(php)
+                    JS + Api Server(php)
+                </td>
+                <td>Front</td>
+                <td>1.5 개월</td>
+                <td>JS + Api Server(php)
+                    JS + Api Server(php)
+                    JS + Api Server(php)
+                    JS + Api Server(php)
+                </td>
+            </tr>
+            <tr>
+                <td>Back</td>
+                <td>3개월</td>
+                <td>Spring Framework</td>
+                <td>Back</td>
+                <td>3개월</td>
+                <td>Spring Framework</td>
+                <td>Back</td>
+                <td>3개월</td>
+                <td>Spring Framework</td>
+                <td>Back</td>
+                <td>3개월</td>
+                <td>Spring Framework</td>
+            </tr>
+            <tr>
+                <td>3rd party</td>
+                <td>0.5개월</td>
+                <td>AWS or VM</td>
+                <td>3rd party</td>
+                <td>0.5개월</td>
+                <td>AWS or VM</td>
+                <td>3rd party</td>
+                <td>0.5개월</td>
+                <td>AWS or VM</td>
+                <td>3rd party</td>
+                <td>0.5개월</td>
+                <td>AWS or VM</td>
+            </tr>
+            
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">이렇게 구성되어 집니다.</td>                
+            </tr>
+        </tfoot>
+    </table>
+</div>
+</body>
+</html>
