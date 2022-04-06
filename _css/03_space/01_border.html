@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경계선</title>
+    <style>
+       /* h1, h3, ol, div, h4, p, ul, li {
+            border: 1px solid red; -> short-hand(축약형)
+            border-width: 1px;
+            border-style: solid;
+            border-color: red;
+        } */
+        h1 {
+            /* 경계선은 border의 기본3개 속성을 우선 적용한 후 스타일링을 한다 */
+            border: 3px solid red;
+            border-radius: 10px;
+        }
+        h3 {
+            border: 3px dotted green;
+        }
+        ol {
+            list-style: none;
+        }
+        ol li {
+            border-width: 10px;
+            border-color: #555;
+            border-left-style: solid;
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+        .list {
+            border-width: 1px 5px 15px 20px;
+            border-style: solid dashed dotted dashed;
+            border-color: red green blue yellow;
+        }
+        h4 {
+            border: 3px solid red;
+            border-radius: 1px 5px 10px 20px;
+        }
+        ol {
+            border-width: 1px 10px;
+            border-style: solid double;
+            border-color: red yellow;
+            border-radius: 1px 20px;
+        }
+        p {
+            height: 200px;
+            border-width: 3px 6px 9px; /* 3개 일 때: 탑과 좌측상단은 절대 짝을 맺지 않는다! */
+            border-style: dotted solid dashed;
+            border-color: red yellow green;
+            border-radius: 10px 20px 30px; 
+        }
+        .bg{
+            width: 300px;
+            height: 500px;
+        }
+        .bg-nct {
+            width: 300;
+            height: 350px;
+            border-radius: 10px 10px 0px 0px ;
+            background-image: url("../../_html/images/nct.jpeg");
+            background-position: center center;
+            background-repeat: no-repeat;
+            margin-bottom: 0;
+        }
+        .card {
+            width: 300px;
+            height: 150px;
+            background-color: #555;
+            color: white;
+        }
+        .card-title{
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>경계선은 html element들간 영역을 구분하는 기준이 됨</h1>
+    <h3>경계선은 box model을 기준으로 거의 모든 태그에 존재함</h3>
+    <ol>
+        <li>경계선 두께 : border-width</li>
+        <li>경계선 색상 : border-color</li>
+        <li>경계선 모양 : border-style</li>
+        <li>경계선 모서리 곡률 : border-radius</li> 
+    </ol>
+    <div class="container">
+        <h4 class="title">Title</h4>
+        <p class="content">Content</p>
+        <ul class="list">
+            <li>list 1</li>
+            <li>list 2</li>
+            <li>list 3</li>
+        </ul>
+    </div>
+    <div class="bg">
+        <div class="bg-nct">
+        </div>
+        <div class="card">
+            <h3 class="card-title">My NCT</h3>
+        </div>
+    </div>
+</body>
+</html>
