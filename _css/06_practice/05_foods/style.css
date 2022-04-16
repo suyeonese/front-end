@@ -1,0 +1,76 @@
+@font-face {
+  font-family: jua;
+  src: url(font/Jua-Regular.ttf);
+}
+body {
+  background-color: #f0e8d9;
+  font-family: jua;
+  color: #58595b;
+}
+div {
+  text-align: center;
+}
+.header {
+  margin: 75px;
+}
+.header > h1 {
+  font-size: 64px;
+}
+.header > h3 {
+  font-size: 32px;
+  margin-top: 30px;  
+}
+div.menu {
+  width: 300px;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 50px;  
+}
+#sushi {
+  width: 300px;
+  height: 200px;
+  margin: 0;
+  background-image: url("images/sushi.jpg");
+  background-size: 300px 200px;
+  border-radius: 10px 10px 0px 0px;
+}
+#hamburger {
+  width: 300px;
+  height: 200px;
+  margin: 0;
+  background-image: url("images/hamburger.jpg");
+  background-size: 300px 200px;
+  border-radius: 10px 10px 0px 0px;
+}
+#chicken {
+  width: 300px;
+  height: 200px;
+  margin: 0;
+  background-image: url("images/chicken.jpg");
+  background-size: 300px 200px;
+  border-radius: 10px 10px 0px 0px;
+}
+#bibimbab {
+  width: 300px;
+  height: 200px;
+  margin: 0;
+  background-image: url("images/bibimbab.jpg");
+  background-size: 300px 200px;
+  border-radius: 10px 10px 0px 0px;
+}
+.menu > div > h3 {
+  margin: 0;
+}
+.menu div:last-child {
+  padding: 20px;
+}
+.menu > div p:first-child {
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+.menu > div p:last-child {
+  color: blue;
+  font-weight: bold;
+  margin: 0;
+}
