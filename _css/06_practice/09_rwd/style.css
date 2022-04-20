@@ -1,0 +1,237 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+div {
+  width: 100%;
+}
+.header {
+  height: 60px;
+  background-color: #555;
+  color: white;
+  font-size: 1.5em;
+  line-height: 60px;
+  vertical-align: middle;
+  padding-left: 40px;
+}
+.main-img {
+  height: 300px;
+  background-image: url("images/notebook.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.description{
+  height: 300px;
+  background-color: white;
+  padding: 0 30px;
+  line-height: 300px;
+}
+.description > div {
+  display: inline-block;
+  line-height: normal;
+  vertical-align: middle;
+}
+.description > div > p:first-child {
+  font-size: 16px;
+  color: #4a4a4a;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.description > div > p:nth-child(2) {
+  font-size: 20px;
+  color: #1b1b1b;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.description > div > p:last-child {
+  font-size: 16px;
+  color: #7a7a7a;
+}
+.sub-img1 {
+  height: 350px;
+  background-image: url("images/monitor.jpg");
+  background-size: cover;
+  background-position: center center;  
+}
+.sub-img2 {
+  height: 200px;
+  background-image: url("images/keyboard.jpg");
+  background-size: cover;
+  background-position: center center;
+  line-height: 200px;
+  text-align: center;
+  padding: 0;
+}
+.sub-img2 > a {
+  display: inline-block;
+  line-height: normal;
+  vertical-align: middle;
+  padding: 9px 40px;
+  border: 4px solid white;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0;
+  color: white;
+}
+.sub-img3 {
+  height: 200px;
+  background-image: url("images/mouse.jpg");
+  background-size: cover;
+  background-position: center center;   
+}
+@media screen and (min-width: 768px) {
+  .main-img {
+    height: 500px;
+    background-image: url("images/notebook.jpg");
+    background-size: cover;
+    background-position: center center;
+  }
+  .description{
+    height: 300px;
+    background-color: white;
+    padding: 0 65px;
+    line-height: 300px;
+  }
+  .description > div {
+    display: inline-block;
+    line-height: normal;
+    vertical-align: middle;
+  }
+  .description > div > p:first-child {
+    font-size: 16px;
+    color: #4a4a4a;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .description > div > p:nth-child(2) {
+    font-size: 20px;
+    color: #1b1b1b;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  .description > div > p:last-child {
+    font-size: 16px;
+    color: #7a7a7a;
+  }
+  .sub-img1 {
+    float: left;
+    width: 50%;
+    height: 300px;
+    background-image: url("images/monitor.jpg");
+    background-size: cover;
+    background-position: center center;  
+  }
+  .sub-img2 {
+    float:right;
+    width: 50%;
+    height: 150px;
+    background-image: url("images/keyboard.jpg");
+    background-size: cover;
+    background-position: center center;
+    line-height: 150px;
+    text-align: center;
+    padding: 0;
+  }
+  .sub-img2 > a {
+    display: inline-block;
+    line-height: normal;
+    vertical-align: middle;
+    padding: 9px 40px;
+    border: 4px solid white;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0;
+    color: white;
+  }
+  .sub-img3 {
+    float:right;
+    width: 50%;
+    height: 150px;
+    background-image: url("images/mouse.jpg");
+    background-size: cover;
+    background-position: center center;   
+  }
+}
+@media screen and (min-width: 960px) {
+  .main-img {
+    float: left;
+    width: 50%;
+    height: 600px;
+    background-image: url("images/notebook.jpg");
+    background-size: cover;
+    background-position: center center;
+  }
+  .description{
+    float: right;
+    width: 50%;
+    height: 300px;
+    background-color: white;
+    padding: 0 65px;
+    line-height: 300px;
+  }
+  .description > div {
+    display: inline-block;
+    line-height: normal;
+    vertical-align: middle;
+  }
+  .description > div > p:first-child {
+    font-size: 16px;
+    color: #4a4a4a;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .description > div > p:nth-child(2) {
+    font-size: 20px;
+    color: #1b1b1b;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  .description > div > p:last-child {
+    font-size: 16px;
+    color: #7a7a7a;
+  }
+  .sub-img1 {
+    float: left;
+    width: 25%;
+    height: 300px;
+    background-image: url("images/monitor.jpg");
+    background-size: cover;
+    background-position: center center;  
+  }
+  .sub-img2 {
+    float:right;
+    width: 25%;
+    height: 150px;
+    background-image: url("images/keyboard.jpg");
+    background-size: cover;
+    background-position: center center;
+    line-height: 150px;
+    text-align: center;
+    padding: 0;
+  }
+  .sub-img2 > a {
+    display: inline-block;
+    line-height: normal;
+    vertical-align: middle;
+    padding: 9px 40px;
+    border: 4px solid white;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0;
+    color: white;
+  }
+  .sub-img3 {
+    float:right;
+    width: 25%;
+    height: 150px;
+    background-image: url("images/mouse.jpg");
+    background-size: cover;
+    background-position: center center;   
+  }
+}
