@@ -1,0 +1,37 @@
+.carousel-item {
+  height: 400px;
+}
+.carousel-inner > div:first-child { 
+  background-image: url("images/html.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.carousel-inner > div:nth-child(2) {
+  background-image: url("images/css.png");
+  background-size: cover;
+  background-position: center center;
+}
+
+.carousel-inner > div:last-child {
+  background-image: url("images/js.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+.carousel-caption {
+  position: absolute;
+  transform: translateY(-30%);  
+}
+.carousel-caption h2 {
+  font-size: 22px;
+  margin-top: 18px; 
+}
+.carousel-caption a {
+  display: inline-block;
+  font-size: 1em;
+  background-color: #5900E7;
+  color: white;
+  margin-top: 48px;
+  padding: 10px 30px;
+  text-decoration: none;
+}
