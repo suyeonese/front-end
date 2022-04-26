@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체</title>
+</head>
+<body>
+    <h1>
+        객체 : 식별할 수 있는 것을 상세 특징으로 표현하려한 형식 (코드 타입)
+    </h1>
+    <ul>
+        <li>
+            const 상수로 선언을 하는 것이 일반적 : 객체의 지속성을 확보하기 위함
+        </li>
+        <li>
+            {}; 안에 속성명: 속성값, 속성명: 속성값, ... 으로 표현 
+        </li>
+        <li>
+            속성의 명칭은 같은 객체 내에서는 중복되면 안됨(고유 키)
+        </li>
+        <li>
+            객체내부의 속성값으로 사용할 수 있는 데이터 타입은 제한이 없다.
+        </li>
+        <li>
+            객체의 속성값으로 익명함수를 정의하면 그 함수를 메서드라고 부른다. 메서드 명은 속석명이 됨.
+        </li>
+    </ul>
+    <script>
+        const car = {name: 'myCar', year: 2008};
+        // car = 100; 불가능
+        // car를 선언한 객체를 지킬 수 있음 - 지속성 확보
+        let myCar = {name: 'superCar', hp: 200}
+        myCar = 100; // 가능
+        // myCar라는 객체는 사라짐 - 객체를 선언하여 활용하려고 하는 목적을 잃어버림
+    </script>
+    <script>
+        let keyName = "lastName";
+        const me = {
+            lastName: "Jung",
+            firstName: `Suyeon`,
+            age: 34,
+            addr: 'Seocho',
+            isDeveloper: true,
+            "hobby": "Baseball",
+            "my favor": "icecream",
+            avail : {
+                year: 2021,
+                title: 'javascript',
+                ver: 'ES6+',
+                project: 'React JS',
+                intro: function(){
+                    // console.log(`${title}:${ver}=${project}`);
+                    console.log(`${me.avail.title}:${me.avail.ver}=${me.avail.project}`);
+                    return `re:${this.title}:${this.ver}=${this.project}`; // this 키워드 : 내가 소속 된 객체를 가리킴
+                }, // 찍어도 되고 안찍어도 됨, ;은 안됨
+            }, // "
+            year: 2022,
+        };
+        console.log(me.addr); // Seocho
+        console.log(me.year); // 2022
+
+        console .log(me.avail.year); // 2021
+        console.log(me.avail.project); // React JS
+        console.log(me.avail.intro); // 함수 실행이 아닌 지목
+        console.log(me.avail.intro()); // 함수 invoke (호출, 실행) // undefined 뜨는 이유: return 값이 없어서 (라인55없었음)
+        console.log(me.hobby);
+
+        console.log("===============================")
+        console.log(me["my favor"]); // (객체값[""]);
+        console.log(me["age"]);
+        console.log(me["avail"]["title"]);
+        console.log(me["avail"]["intro"]());
+
+        console.log("===============================")
+        console.log(me[keyName]); //me["lastName"]
+        
+        keyName = "age";
+        console.log(me[keyName]); // me["age"]
+
+        console.log("===============================")
+        console.log(me.avail["title"]);
+        console.log(me["avail"].ver);
+    </script>
+    <script>
+        const musician = {
+            name: 'MARK',
+            age: 24,
+            playList: {
+                first: '7th sense',
+                second: 'Child',
+                third: 'Cherry bomb',
+            },
+            jukebox: function(first, second, third) {
+                console.log(`${this.playList.first}, ${this.playList.second}, ${this.playList.third}`);
+                return `${first}, ${second}, ${third}`;
+            },
+        };
+        let playList = musician.jukebox("일곱번째 감각","차일드","체리밤");
+        console.log(typeof playList);
+        console.log(typeof playList === typeof musician.name);
+
+        console.log(musician.jukebox("일곱번째 감각","차일드","체리밤"));
+    </script>
+</body>
+</html>
