@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문자타입 관련 메서드</title>
+</head>
+<body>
+    <h1>
+        문자관련 메서드는 사용률이 매우 높고 다른 프로그래밍 언어에서 사용되는 메서드와 비슷하므로 잘 알아두면 좋다.
+    </h1>
+    <ul>
+        <li>
+             문자 추출 관련 메서드 : slice(), substring(), substr()
+        </li>
+        <li>
+            문자 대체 메서드
+            <ul>
+                <li>
+                    replace(oldStr, newStr): 첫번째 매칭되는 문자만, 대소문자 구분
+                </li>
+                <li>
+                    trim() : 문자열 양측 공백제거 메서드 : 데이터 입력값의 좌우 공백을 삭제하는 경우 많이 사용
+                </li>
+                <li>
+                    padStart(목표문자길이, 채울문자): 앞쪽에 채우기 <br>
+                    padEnd(목표문자길이, 채울문자): 뒤쪽에 채우기 <br>
+                    문자값의 힌트, 전체값 중 일부만 보여주고 싶을 때 등등 (ex: id 찾기, 비밀번호 찾기, 힌트)
+                </li>
+            </ul>
+        </li>
+        <li>
+            문자 추출 메서드 : charAt(position) : position=index<br>
+            지정한 index의 문자값을 추출 <br>
+            string[index] : readonly
+        </li>
+        <li>
+            탐색 메서드
+            <ul>
+                <li>
+                    indexOf("str"), lastIndexOf("str") : 지정문자열의 index 리턴<br>
+                    문자값이 2자 이상이면 시작하는 char의 index (char: 한 글자, string: 한 글자 이상) 
+                </li>
+                <li>
+                    startWith(), endWith() : 지정문자열이 탐색대상 문자열에서 시작과 끝으로 존재하는지 여부 : return true or false (boolean형) <br>
+                    파라미터가 1개 : startWith(지정문자열)이 시작과 끝에 존재하는 지 여부 <br>
+                    파라미터가 2개 : endWith(지정문자열, 탐색할 문자열의 시작부터의 길이)
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+    <script>
+        let str = "Apple, Banana, Kiwi";
+        let startIndex = 0;
+        let endIndex = 6; // endIndex값은 미포함
+        console.log(str.slice(startIndex, endIndex));
+        // 파라미터가 1개일 때는 지정 index부터 문자값 끝까지
+        console.log(str.slice(7));
+        console.log(str.slice(7, str.length));
+        // 파라미터에 음수를 사용하면 문자값 뒤에서 출발 
+        console.log(str.slice(-1)); // (0 - 1 => 뒤에서 첫번째)
+
+        // str.substring(startIndex, endIndex); 
+        // 파라미터에 음수를 사용할 수 없는 slice()와 같음
+
+        // str.substr
+        let count = 5;
+        // count는 문자 선택 개수 (startIndex 포함)
+        console.log(str.substr(startIndex, count));
+        // 파라미터가 1개이면 지정인덱스로부터 문자값 끝까지
+        console.log(str.substr(13));
+        console.log(str.substr(13, str.length-13));
+
+        // replace 메서드는 기본적인 정규식을 알아두면 편하다
+        let text= "Please visit Microsoft!";
+        let newText = text.replace(/MICROSOFT/i, "W3Schools"); // 대소문자 구분x
+
+        let text2 = "Please visit Microsoft and Microsoft!";
+        let newText2 = text2.replace("Microsoft", "W3Schools"); // 문자열 전체에 적용
+
+        let trimText = "       이번주 학습 과정은 ";
+        console.log(trimText.trim());
+
+        // 주민등록번호 -을 포함하여 텍스트를 준비하고 생년월일-성별코드 1자리 뒤쪽은 *로 대체하여 출력하시오.
+        // let padText = "990802-1234567"; 
+        // console.log(padText.padEnd(21, "*")); //내가 잘못 한 것
+
+        let idNum= "990302-2234567"; // 문자값
+        let idNumLen = idNum.length; // 문자값 가져오기
+        let idNumSlice = idNum.substr(0,8); //let idNumSlice = idNum.slice(0, 8) 
+        let reIdNum = idNumSlice.padEnd(idNumLen, "*");
+        console.log(reIdNum);
+        // 처음부터 한줄로 만들 생각을 하는 것은 시간이 많이 소요되므로 위의 예제처럼 순서대로 생각하는 연습을 먼저 하세요.
+        console.log(idNum.substr(0,8).padEnd(idNum.length, "*"));
+
+        // index의 값이 고정적인 의미를 갖고 있을 때 값을 추출해서 판단하는 로직에 많이 사용
+        let genNum = idNum.charAt(7);
+        console.log(genNum);
+        if (genNum == 1 || genNum == 3) {
+           console.log('남성의 주민번호'); 
+        } else {
+            console.log('여성의 주민번호');
+        }
+
+        if (parseInt(idNum.charAt(7))) {
+            console.log('여성의 주민번호');
+        }
+console.log("=======================================")
+        let fullFileName = "20220404_javascript.string_method.html";
+        let onlyFileName = fullFileName.substring(0, fullFileName.lastIndexOf("."));
+        console.log(onlyFileName);
+        let fileExt = fullFileName.substring(fullFileName.lastIndexOf(".")+1);
+        console.log(fileExt);
+
+        // 작성날짜 추출하기
+        let regData = fullFileName.substring(0,fullFileName.indexOf("_"));
+        console.log(regData);
+        
+        // method 추출하기
+        let title = fullFileName.substring(fullFileName.lastIndexOf("_")+1, fullFileName.lastIndexOf("."));
+        console.log(title);
+
+        let text3 = "the rain in SPAIN stays mainly in the plain";
+        let result = text00.match(/ain/g);
+        console.log(result);
+
+        // 전체 문자열에서 지정문자열 존재여부
+        let text4 = "Hello world, welcome to the universe.";
+        console.log(text4.includes("world"));
+        console.log(text4.includes("world"), 12);
+
+    </script>
+</body>
+</html>
