@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>중첩반복문</title>
+</head>
+<body>
+    <h1>
+        반복문 내에 반복문 : 원리를 이해하면 어렵지 않아요~
+    </h1>
+    <ul>
+        <li>
+            outer while : 바깥쪽 반복문 -> 기준
+        </li>
+        <li>
+            inner while : 안쪽 반복문 -> 기준이 반복될 때마다 다시 실행
+        </li>
+    </ul>
+    <h3>구구단 한 번 만들어보세요</h3>
+    <h1 id="printGugudan"></h1>
+    <button type="button" id="sbmBtn">구구단 실행</button>
+    <script>
+        document.getElementById('sbmBtn').addEventListener('click', function(){
+            let dan = 0;
+            let incre = 2;
+            while(incre < 10 && dan < 10){
+                document.getElementById('printGugudan').innerText = `${dan} x ${incre} = ${dan*incre}`;
+                incre++;
+                dan++;
+            } while( dan > 1);
+        });
+    </script>
+
+
+</body>
+</html>
