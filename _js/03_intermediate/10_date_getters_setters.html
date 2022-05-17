@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date 객체 관련 get, set 메서드</title>
+    <style>
+        img{
+            width: 33%;
+        }
+    </style>
+</head>
+<h1>
+</h1>
+<Ul>
+    <li>
+        Date객체에는 날짜와 시간관련 메서드들이 동일한 이름으로 구조화 되어 있음
+    </li> 
+    <li>
+        Get Methods <br>
+        <img src="images/getmethod.png" alt="">
+    </li>
+    <li>
+        Set Methods <br>
+        <img src="images/setmethod.png" alt="">
+    </li>
+</Ul>
+<h2>
+    Date() 객체가 사용하기 불편한 부분이 있어 이를 보완하기 위해 자바스크립트 라이브러리를 많이 활용 하는 편
+</h2>
+<ul>
+    <li>
+        momen.js : 순수 자바스클비트를 기반으로 날짜 데이터를 다루는 코드 라이브러리
+    </li>
+    <li>
+        fullcalendar : 캘린더 UI까지 제공하는 플노트용 라이브러리 : 커스터마이징이 어려운 편이라서 별도의 라이브러리 공부가 필요함
+    </li>
+</ul>
+<h2>
+    Q1. 여러분의 생년월일로부터 오늘까지 몇 일이 지났는지 출력해보세요.<br>
+    (optional) : 어떤 목표가 있다고 가정, 기한을 정한 후 몇일 남았는 지 출력해보세요.
+</h2>
+
+
+<body>
+    <script>
+    let todays = new Date();
+    console.log(todays.getDay());
+
+
+   // Q1.
+    const today = new Date();
+    const birth = new Date("1989-03-20");
+
+    let timeDiff = Math.ceil((today.getTime() - birth.getTime())/1000/60/60/24);    
+
+    console.log(`수연쓰 태어난 지 ${timeDiff}일이나 되었넴`);
+
+    // optional
+    // 목표기한 : 2022년 08월 02일
+    const startDay = new Date();
+    const targetDay = new Date("2022-08-02");
+
+    let dDay = targetDay.getTime() - startDay.getTime();
+    let realDDay = Math.floor(dDay/1000/60/60/24);
+
+    console.log(`마크 생일까지 ${realDDay}일 남았습니다.`);
+    </script>
+</body>
+</html>
