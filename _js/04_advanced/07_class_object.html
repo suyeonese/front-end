@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>클래스, 객체, 생성자 함수</title>
+  </head>
+  <body>
+    <h1>클래스, 리터럴 객체, 생성자 함수를 통해 객체를 만들어보자</h1>
+    <ul>
+      <li>
+        정의 할 프로퍼티(멤버변수, name) : firstName, lastName, age, eyeColor
+      </li>
+    </ul>
+    <script>
+      class PersonClass {
+        constructor(first, last, age, eye) {
+          this.firstName = first;
+          this.lastName = last;
+          this.age = age;
+          this.eyeColor = eye;
+        }
+        get personInfo() {
+          return `${this.firstName},${this.lastName},${this.age},${this.eyeColor}`;
+        }
+      }
+      const personObject = {
+        firstName: "",
+        lastName: "",
+        age: 0,
+        eyeColor: "",
+        get personInfo () {
+          return `${this.firstName},${this.lastName},${this.age},${this.eyeColor}`;
+        },
+        set setFirstName(first) { // construct 역할을 해줌
+                this.firstName = first;
+            },
+            set setLastName(last) {
+                this.lastName = last;
+            },
+            set setAge (age) {
+                this.age = age;
+            },
+            set setEyeColor(color) {
+                this.eyeColor = eye;
+            },
+      };
+      function PersonObject(first, last, age, eye) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyeColor = eye;
+        this.getPersonInfo = function (){
+          return `${this.firstName},${this.lastName},${this.age},${this.eyeColor}`;
+        }
+      }
+      const myInfo = new PersonObject('kitae', 'park', 44, 'black');
+    </script>
+  </body>
+</html>
