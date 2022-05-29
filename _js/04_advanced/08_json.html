@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON</title>
+</head>
+<body>
+  <h1>
+    JSON : JavaScript Object Notation : 자바스크립트 객체 표기법
+  </h1>
+  <ul>
+    <li>
+      데이터의 요청 및 응답처리에 필요한 데이터의 표준 형식을 제공하는 타입
+    </li>
+    <li>
+      백엔드 언어의 종류에 관계없이 데이터 송수신을 단일 형식으로 통일함
+    </li>
+    <li>
+      데이터의 전송은 모두 string 타입으로 이루어지기 때문에 송수신 모듈에서 타입의 변환이 필요함 
+    </li>
+    <li>
+      서버로 데이터 보낼때 > json to string > JSON.stringify(jsObject)
+    </li>
+    <li>
+      서버로부터 데이터를 받을때 > string to json > JSON.parse(stringData)
+    </li>
+  </ul>
+  <script>
+    const stringData = '{"id": "0001","type": "donut","name": "Cake",'
+      	+ '"image":	{"url": "images/0001.jpg","width": 200,	"height": 200},'
+      	+ '"thumbnail":	{"url": "images/thumbnails/0001.jpg","width": 32,"height": 32}}';
+
+    let parsedData = JSON.parse(stringData);
+    console.log(parsedData);
+    // parsedData를 console 이나 html 태그로 key : value 형식으로 출력해보기
+    // 반복문을 사용하여 접근할 것
+    for (const key in parsedData) {
+      if(key == 'image' || key == 'thumbnail'){
+        let nestedObject = parsedData[key];
+        for (const k in nestedObject) {
+          console.log(k, ":", nestedObject[k]);
+        }
+      }else{
+        console.log(key, ":", parsedData[key]);
+      }
+    }
+
+    const myInfoData = {
+      "name":'Park',
+      "age":'44',
+      "blood": 'O',
+      "major": 'Financial',
+      "addr": 'Seoul'
+    };
+    let myInfoString = JSON.stringify(myInfoData);
+    console.log(typeof myInfoString);
+    console.log(myInfoString);
+    console.log('\"name\"');
+
+    // 출력 모양 > 반복문으로 만들어보기
+    let strFormat = '{"name":"Park","age":"44","blood": "O","major": "Financial",   "addr": "Seoul"}';
+
+    let str ='{';
+    for (const key in myInfoData) {
+      str += `\"${key}\":\"${myInfoData[key]}\",`;
+    }
+    str = str.substring(0, str.length-1);
+    str += '}';
+    console.log(str);
+    console.log(JSON.parse(str));
+  </script>
+</body>
+</html>
