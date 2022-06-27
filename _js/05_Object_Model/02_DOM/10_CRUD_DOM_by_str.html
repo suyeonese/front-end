@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문자열로 문서 CRUD 해보기</title>
+</head>
+<body>
+  <button type="button" id="btn1">Li Tag 한번에 추가하기</button>
+  <button type="button" id="btn2">Li Tag 순차적 추가하기</button>
+  <button type="button" id="btn3">Li Tag 한번에 추가하기</button>
+  <button type="button" id="btn4">Li Tag 순차적 추가하기</button>
+  <ul id="ul"></ul>
+  <hr>
+  <ol id="ol"></ol>
+  <hr>
+  <ul id="ul2"></ul>
+  <hr>
+  <ol id="ol2"></ol>
+  <script>
+    document.getElementById('btn1').addEventListener('click', () => {
+      let lis = '<li><a href="#html">HTML</a></li>';
+      lis += '<li><a href="#css">CSS</a></li>';
+      lis += '<li><a href="#javascript">Javascript</a></li>';
+      lis += '<li><a href="#sql">SQL</a></li>';
+      document.getElementById('ul').innerHTML = lis;
+    });
+
+    const datas = ["HTML", "CSS", "Javascript", "SQL"];
+    let idx = 0;
+    document.getElementById('btn2').addEventListener('click', () => {
+      if(idx < datas.length){
+        let lis =
+         `<li><a href="#${datas[idx].toLocaleLowerCase()}">${datas[idx]}</a></li>`;
+         document.getElementById('ol').innerHTML += lis;
+         idx++;
+      }
+    });
+
+    document.getElementById('btn3').addEventListener('click', () => {
+      let ulTag = document.getElementById('ul2');
+      datas.forEach((elem) => {
+        let liTag = document.createElement('li'); // <li></li>
+        let aTag = document.createElement('a'); // <a></a>
+        aTag.setAttribute('href', `#${elem.toLocaleLowerCase()}`); // href="#~"
+        aTag.innerText = elem; // <a href="#~">HTML</a>
+        liTag.appendChild(aTag);        
+        ulTag.appendChild(liTag);
+      });
+    });
+
+    // btn4를 클릭하면 순차적으로 리스트 추가하기 by DOM Node Creation
+    let index = 0;
+    const ol2 = document.getElementById('ol2');
+    document.getElementById('btn4').addEventListener('click', () => {
+      if(index < datas.length){
+        let liTag = document.createElement('li'); // <li></li>
+        let aTag = document.createElement('a'); // <a></a>
+        aTag.setAttribute('href', `#${datas[index].toLocaleLowerCase()}`); // href="#~"
+        aTag.innerText = datas[index]; // <a href="#~">HTML</a>
+        liTag.appendChild(aTag);        
+        ol2.appendChild(liTag);
+        index++;
+      }
+    });
+  </script>
+</body>
+</html>
