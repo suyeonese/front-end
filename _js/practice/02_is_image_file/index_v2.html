@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이미지 파일 구분</title>
+  <style>
+    .green {
+      color: green;
+    }
+    .red {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    input text에 파일명.확장자를 입력하여 전송버튼을 누르면 이미지파일인지 검사하여 이미지파일이면 정상파일입니다. 이미지 파일이 아니면 이미지파일만 가능합니다. 라고 출력하기
+  </h1>
+  <form action="">
+    파일명 : <input type="text" id="fileName">
+    <button type="button" id="sbmBtn">전송</button>
+  </form>
+  <h2 id="printZone"></h2>
+  <script>
+    function imageFileValid(fn) {
+
+      let imageFileName = fn.toLowerCase();
+      
+      // 대문자로 된 확장자명도 소문자기준으로 판단 가능해야 함
+      return imageFileName.endsWith("png") ? true
+       : imageFileName.endsWith("jpg") ? true 
+       : imageFileName.endsWith("jpeg") ? true
+       : imageFileName.endsWith("gif") ? true
+       : false;
+return imgFile.endsWith('png') ? 
+        true : (imgFile.endsWith('jpg') ?
+                true : (imgFile.endsWith('jpeg') ?
+                         true : (imgFile.endsWith('gif') ?
+                                  true : false))); 
+                                  
+    // if (imgFile.endsWith('png')) {
+    //   return true;
+    // }else if(imgFile.endsWith('jpg')){
+    //   return true;
+    // }else if(imgFile.endsWith('jpeg')){
+    //   return true;
+    // }else if(imgFile.endsWith('gif')){
+    //   return true;
+    // }else{
+    //   return false;
+    // }
+    }
+    document.getElementById('sbmBtn').addEventListener('click',function(){
+      let fileName = document.getElementById('fileName').value;
+      // let isImage = imageFileValid(fileName) ? "정상파일 입니다." : "이미지파일만 가능합니다.";
+      // document.getElementById('printZone').innerText = isImage;
+      // console.log(`이미지 파일 여부:${isImage ? 'Yes':'No'}`);
+
+      // document.getElementById('printZone').innerText
+      // = imageFileValid(fileName) ? "정상파일 입니다." : "이미지파일만 가능합니다."
+
+      let imgTrue = '<span class="green">정상파일 입니다.</span>';
+      let imgFalse = '<span class="red">이미지파일만 가능합니다.</span>';
+      document.getElementById('printZone').innerHTML
+      = imageFileValid(fileName) ? imgTrue : imgFalse;
+    });
+
+    // 삼항연산자
+    // 조건항(true or false) ? true일때 필요한 값이나 코드 : false일때 필요한 값이나 코드
+    // let result = condition ?
+    // (when true) value or code : (when false) value or code;
+    // let rv = C ? T : F;
+  </script>
+</body>
+</html>
