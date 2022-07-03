@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국에서 호칭 선택하기</title>
+</head>
+<body>
+  <h1>
+    외국인들이 가장 어려워하는 것 중 하나가 한국인들의 호칭
+  </h1>
+  <h3>부르는 사람: 성별, 나이</h3>
+  <h3>부르는 대상: 성별, 나이</h3>
+  를 입력받으면 어떻게 부르는 지를 출력해주는 로직을 완성해보시오
+
+  <h1>한국인들의 호칭</h1>
+  나의 성별(male/female) : <input type="text" id="myGen"> <br>
+  나의 나이 : <input type="number" id="myAge"> <br>
+  너의 성별(male/female) : <input type="text" id="yourGen"> <br>
+  너의 나이 : <input type="number" id="yourAge"> <br>
+  <button type="button" id="sbmBtn">어떻게 부르라구?</button>
+  <h1 id="howCall"></h1>
+
+  <script>
+    function printHowCall(howCall) {
+      document.getElementById('howCall').innerText = howCall;
+    }
+
+    function whatShouldICallYou(mg, ma, ug, ua) {      
+      let howCall = '';
+      if(ma == ua) {
+        howCall = '반갑다 친구야!';
+      }else if(ma > ua){
+        howCall = ug == 'm'? '어이 남동생' : '오호 여동생';
+      }else {
+        if (mg == 'm') {
+          howCall = ug == 'm' ?  '혀~~엉' : '누나~~~';
+        } else {
+          howCall = ug == 'm' ? '오빠~~' : '언니~~~';
+        }
+      }
+      printHowCall(howCall);
+    }
+    function infoValid(mg, ma, ug, ua){      
+      let isOk = true;
+      if (!(ma > 0 && ua > 0)) {        
+        isOk = false;
+      } else if(!((mg == 'm' || mg == 'f') && (ug=='m' || ug=='f'))) {
+        isOk = false;
+      }
+      return isOk;
+    }
+
+    function getInfo(){
+      let mg = document.getElementById('myGen').value;
+      let ma = document.getElementById('myAge').value;
+      let ug = document.getElementById('yourGen').value;
+      let ua = document.getElementById('yourAge').value;
+
+      if(infoValid(mg, parseInt(ma), ug, parseInt(ua))){
+        whatShouldICallYou(mg, parseInt(ma), ug, parseInt(ua));
+      }else {
+        document.getElementById('howCall').innerText = '올바른 데이터를 입력하세요!';
+      }
+    }
+    document.getElementById('sbmBtn').addEventListener('click', getInfo);
+  </script>
+</body>
+</html>
