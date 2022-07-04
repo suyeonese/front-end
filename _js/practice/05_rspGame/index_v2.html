@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가위 바위 보 게임</title>
+</head>
+<body>
+  <h1>
+    컴퓨터가 가위바위보를 정하면 나도 가위 바위 보 버튼중 한개를 선택하여 게임을 한다    
+  </h1>
+  <h3>총 5번의 게임에서 각 게임마다 승 무 패를 출력한다</h3>
+  <button type="button" id="sc" value="0">가위</button>
+  <button type="button" id="rc" value="1">바위</button>
+  <button type="button" id="pp" value="2">보</button>
+  <h1 id="printResult"></h1>
+  <script>
+    let count = 0;
+    function printResult(msg) {
+      document.getElementById('printResult').innerHTML = msg;
+      if(count == 5){
+        document.getElementById('sc').disabled = true;
+        document.getElementById('rc').disabled = true;
+        document.getElementById('pp').disabled = true;
+      }
+    }
+    function choiceFromComputer() {
+      // 가위:0, 바위:1, 보:2
+      return Math.floor(Math.random()*3);
+    }
+    function decisionWinner(myChoice, comChoice) {
+      let result = "";
+      if (myChoice == comChoice) {
+        result = "무승부";
+      } else {
+        if (myChoice == 0) { // 내가 가위버튼을 클릭한 상황
+          result = comChoice == '1' ? '패':'승';
+        } else if(myChoice == 1){ // 내가 바위버튼을 클릭한 상황
+          result = comChoice == '0' ? '승':'패';
+        }else{ // 내가 보버튼을 클릭한 상황
+          result = comChoice == '1' ? '승':'패';
+        }
+      }
+      printResult(result);
+    }
+      
+    document.addEventListener('click', function (e) {
+      let targetId = e.target.id; //e.target.value도 가능
+      // console.log(typeof targetId, targetId);
+      // debugger;
+      if(targetId == 'sc' || targetId == 'rc' || targetId == 'pp'){
+        if(count < 5){
+          let myChoice = document.getElementById(targetId).value;
+          decisionWinner(myChoice, choiceFromComputer());
+          count++;
+        }else{
+          printResult("5번의 게임을 모두 이용함!");
+        }
+      }
+    });
+    
+    // document.getElementById('sc').addEventListener('click', function(){
+    //   if(count < 5){
+    //   let myChoice = document.getElementById('sc').value;
+    //   decisionWinner(myChoice, choiceFromComputer());
+    //   count++;
+    //   }else{
+    //     printResult("5번의 게임을 모두 이용함!");
+    //   }
+    // });
+    // document.getElementById('rc').addEventListener('click', function(){
+    //   if(count < 5){
+    //   let myChoice = document.getElementById('rc').value;
+    //   decisionWinner(myChoice, choiceFromComputer());
+    //   count++;
+    //   }else{
+    //     printResult("5번의 게임을 모두 이용함!");
+    //   }
+    // });
+    // document.getElementById('pp').addEventListener('click', function(){
+    //   if(count < 5) {
+    //   let myChoice = document.getElementById('pp').value;
+    //   decisionWinner(myChoice, choiceFromComputer());
+    //   count++;
+    //   }else{
+    //     printResult("5번의 게임을 모두 이용함!");
+    //   }
+    // });
+  </script>
+</body>
+</html>
