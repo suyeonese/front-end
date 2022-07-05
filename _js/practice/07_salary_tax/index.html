@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>종합소득세 계산해보기</title>
+</head>
+<body>
+  <h1>종합소득세 = 과세표준 * 소득세율</h1>
+  <ul>
+    과세표준 = 총소득액 - 총공제인정액
+    <li>
+      총소득액 산출 = 시간당 pay를 입력받기, 하루 근무시간 입력받기, 1년 근로일수 입력받기(1년 52주)
+    </li>
+    <li>
+      총공제인정액(약식신고%) = 랜덤으로 약식신고% = 30.0% ~ 40.0%를 산출한다
+    </li>
+    <li>
+      과세표준의 해당구간의 세율을 부과하여 세액을 출력하세요
+    </li>
+    <li>
+      <img src="tax_rate.PNG" alt="" width="500">
+    </li>
+  </ul>
+  시간당 Pay : <input type="number" id="hourPay">만원<br>
+  하루 근무시간 : <input type="number" id="workHour">시간<br>
+  1년 근로일수 : <input type="number" id="workDays">일
+  <button type="button" id="sbmBtn">데이터 전송</button>
+  <h1 id="printResult"></h1>
+  <script>
+    document.getElementById('sbmBtn').addEventListener('click', function(){
+      let pay = parseFloat(document.getElementById('hourPay').value);
+      let hour = parseInt(document.getElementById('workHour').value);
+      let days = parseInt(document.getElementById('workDays').value);
+
+      let salary = pay * hour * days;
+      let ratio = ((Math.random() * 11) + 30) / 100;
+      ratio = ratio.toFixed(2);
+      if(ratio > 0.4) ratio  = 0.4;
+
+      let targetIncome = salary * (1 - ratio); // 100-(100*0.4) => 100*(1-0.4)
+      let tax = 0;
+      if(targetIncome <= 1200){
+        tax = targetIncome * 0.06;
+      }else if(targetIncome <= 4600){
+        tax = targetIncome * 0.15 - 108;
+      }else if(targetIncome <= 8800){
+        tax = targetIncome * 0.24 - 522;
+      }else if(targetIncome <= 15000){
+        tax = targetIncome * 0.35 - 1490;
+      }else if(targetIncome <= 30000){
+        tax = targetIncome * 0.38 - 1940;
+      }else if(targetIncome <= 50000){
+        tax = targetIncome * 0.40 - 2540;
+      }else if(targetIncome <= 100000){
+        tax = targetIncome * 0.42 - 3540;
+      }else {
+        tax = targetIncome * 0.45 - 6540;
+      }
+      document.getElementById('printResult').innerText 
+      = `시간당 ${pay}만원으로 계약하고 하루에 ${hour}시간을 일을 한다고 가정하여 일년에 ${days}일을 출근하면 총 ${salary}만원을 받게 되고 ${ratio*100}%를 공제 받는경우 ${tax}만원을 세금으로 납부해야 한다`;
+    });
+  </script>
+</body>
+</html>

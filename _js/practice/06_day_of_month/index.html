@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>각 달의 마지막 날 구하기</title>
+  </head>
+  <body>
+    <h1>
+      1월 부터 12월을 입력하면 입력한 달의 마지막 일자가 몇일 인지 출력(switch문
+      활용)
+    </h1>
+    <input type="number" id="month" min="1" max="12" />
+    <button type="button" id="sbmBtn">마지막 일?</button>
+    <h2 id="printResult"></h2>
+
+    <script>
+      document.getElementById("sbmBtn").addEventListener("click", function () {
+        let month = parseInt(document.getElementById("month").value);
+        let days = 0;
+        switch (month) {
+          case 2:
+            days = "28 or 29";
+            break;
+          case 4:
+          case 6:
+          case 9:
+          case 11:
+            days = 30;
+            break;
+          default:
+            days = 31;
+            break;
+        }
+        document.getElementById("printResult").innerText = days;
+      });
+      let flag = 12 == "12"; // true
+      switch (flag) {
+        case true:
+          console.log("boolean도 case문에서 활용될 수 있는가?");
+          break;
+        case false:
+          console.log("boolean도 case문에서 활용될 수 있는가???");
+          break;
+        default:
+          break;
+      }
+    </script>
+  </body>
+</html>
