@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별찍어보자</title>
+</head>
+<body>
+    <h1>높이(양의정수)를 입력받으면 직각삼각형의 모양으로 별(*)의 탑이 출력되게 해보세요. </h1>
+    <pre>입력받은 숫자 : 5
+    *
+    **
+    ***
+    ****
+    *****
+    </pre>
+    높이(양의정수) 입력 : <input type="number" id ="height">
+    <button type="button" id="printBtn">별의 탑 출력</button>
+    <h3 id ="printStars"></h3>
+    <script>
+        function printStars(height) {
+            let i = 0;
+            while (i < parseInt(height)) {
+                let stars = '';
+                let j = 0;
+                while (j <= i) {
+                    stars += '*';
+                    j++;
+                }
+                i++;
+                stars += "<br>";
+                document.getElementById('printStars').innerHTML += stars;
+            }
+        }
+        document.getElementById('printBtn').addEventListener('click', function(){
+            printStars(document.getElementById('height').value);
+        });
+    </script>
+
+
+
+    <!-- <input type="number" id="heightNum" min="1">
+    <button type="button" id="sbmBtn">별 만들기</button>
+    <script>
+
+        document.getElementById('sbmBtn').addEventListener('click', function(){
+            let heightNum = 1;
+            while (heightNum > 1) {
+                let starNum = 1;
+                while (starNum > 1) {
+                    
+                }
+                
+            }
+        })
+        
+    </script> -->
+</body>
+</html>
