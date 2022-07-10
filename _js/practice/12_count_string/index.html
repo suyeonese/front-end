@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글자 출현 횟수</title>
+</head>
+<body>
+    <h1>
+        주어진 문장에서 입력받은 글자나 단어의 갯수를 출력하기
+    </h1>
+    <p id="para">
+        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham. 
+    </p>
+    찾을 단어 입력: <input type="text" id="keyword">
+    <button type="button" id="searchBtn">출현개수 출력</button>
+    <h3> 찾는 keyword : <span id = "key"></span> 출현개수: <span id="count"></span>개</h3>
+
+    <script>
+        function printKeywordCount(k, c) {
+            document.getElementById('key').innerText = k;
+            document.getElementById('count').innerText = c;  
+        }
+
+        document.getElementById('searchBtn').addEventListener('click', function(){
+            const para = document.getElementById('para').innerText;
+            let strData = para.trim();
+            let dataLen = strData.length;
+            let keyword = document.getElementById('keyword').value;
+            let count = 0;
+
+            // 위 자류들을 판단해서 strData에서 찾아야함
+
+            if (keyword.length == 1) {
+
+               for (let i = 0; i < dataLen; i++) {
+                   if(strData.charAt(i) == keyword){ //ㅋ키워드와 strData가 같으면
+                       count++; //하나씩 늘린다
+                   }
+               } 
+
+            } else{
+                for (let i = 0; i < dataLen; i++) {
+                    if(strData.indexOf(keyword, i) > 0){
+                        count++;
+                        i = strData.indexOf(keyword, i);
+                       // console.log(i); 확인작업!!!
+                    }
+                }
+
+            }
+            printKeywordCount(keyword, count);
+        });               
+    </script>
+
+
+
+
+    <!-- <script>
+        document.getElementById('searchBtn').addEventListener('click', function(){
+           const words = 'para';
+
+           let i = 0;
+           let printResult = "";
+           for (;words[i];) {
+               printResult += words[i];
+               i++
+           }
+
+        document.getElementById('keyword').innerText
+        = printResult;
+
+        });
+    </script> -->
+</body>
+</html>
