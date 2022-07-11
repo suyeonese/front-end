@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팰린드롬</title>
+</head>
+<body>
+    <h1>
+        팰린드롬 : 거꾸로 읽어도 같은 단어인지 판단하기
+    </h1>
+    <ul>
+        <li>
+            단어 입력을 받아 팰린드롬 여부를 출력하세요.
+        </li>
+        <li>
+            테스트 단어 예시 : 토마토, 기러기, kayak 그 외 일반 단어
+        </li>
+    </ul>
+    단어입력받기: <input type="text" id="strData">
+    <button type="button" id="btn">입력</button>
+    <h1 id="result"></h1>
+    <script>
+        function isPalindrome(word){
+            let wordLen = Math.floor(word.length / 2); // 6개짜리 단어의 절반 -> 3, 7 ->3
+            for(let i=0; i < wordLen; i++){
+                if (word.charAt(i) != word.charAt(word.length-1-i)) {
+                    return false;    
+                }
+            } return true;
+        }
+        document.getElementById('btn').addEventListener('click', function(){
+            let strData = document.getElementById('strData').value;
+            isPalindrome(strData);
+            console.log(`${isPalindrome(strData) ? "팰린드롬 단어임!" : "팰린드롬 단어 아님"}`);
+            document.getElementById('result').innerText 
+            = `${isPalindrome(strData) ? "팰린드롬 단어임!" : "팰린드롬 단어 아님"}`; 
+        });
+    </script>
+</body>
+</html>
