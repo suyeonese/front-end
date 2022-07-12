@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+.container {
+  width: 50%;
+  margin: auto;
+  border: 3px dashed green;
+}
+.area {
+  border: 1px solid red;
+}
+.top {
+  height: 50px;
+}
+button {
+  width: 10%;
+  padding: 10px;
+}

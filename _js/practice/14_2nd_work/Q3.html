@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2nd Work Quiz 3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>
+    단순 사칙연산 계산기 만들기 (+, -, *, /)
+  </h1>
+  <ul>
+    <li>
+      계산기의 작동은 버튼으로만 조작가능하다
+    </li>
+    <li>
+      연산자는 한 번만 사용하는 것으로 한다
+    </li>
+    <li>
+      버튼 : ., 0~9, +, -, *, /, =, C(clear)
+    </li>
+    <li>
+      계산기의 출력은 수식 = 결과의 형태이어여야 한다 : 12 + 34 = 46
+    </li>
+  </ul>
+  <div class="container">
+    <h1 class="area top" id="printFomula"></h1>
+    <div class="area bottom">
+      <button type="button" value="7">7</button>
+      <button type="button" value="8">8</button>
+      <button type="button" value="9">9</button>
+      <button type="button" value="+">+</button>
+      <button type="button" value="C">C</button>
+      <br>
+      <button type="button" value="4">4</button>
+      <button type="button" value="5">5</button>
+      <button type="button" value="6">6</button>
+      <button type="button" value="-">-</button>
+      <br>
+      <button type="button" value="1">1</button>
+      <button type="button" value="2">2</button>
+      <button type="button" value="3">3</button>
+      <button type="button" value="*">*</button>
+      <br>
+      <button type="button" value=".">.</button>
+      <button type="button" value="0">0</button>
+      <button type="button" value="=">=</button>
+      <button type="button" value="/">/</button>
+    </div>
+  </div>
+  <script>
+    const fomula = document.getElementById('printFomula');
+    let fomulaValue = "";
+    
+    function operation(f, o, l) {
+      let result = 0;
+      switch (o) {  
+        case "+":
+          result = f + l;
+          break;
+        case "-":
+          result = f - l;
+          break;
+        case "*":
+          result = f * l;
+          break;
+        case "/":
+          result = f / l;
+          break;
+      
+        default:
+          break;
+      }
+      return result.toFixed(2);
+    }
+    
+    function extractValue(strValue) {
+      let firstNum = strValue.substring(0, strValue.indexOf(" "));
+      let operator = strValue.substr(strValue.indexOf(" ")+1, 1);
+      let lastNum = strValue.substring(strValue.lastIndexOf(" ")+1);
+
+      console.log(`${firstNum} ${operator} ${lastNum}`);
+
+      return operation(parseFloat(firstNum), operator, parseFloat(lastNum));
+    }
+
+    document.querySelector(".container").addEventListener('click', function(e){
+      console.log('click event occured');
+      let btnValue = e.target.value;
+
+      if(!isNaN(btnValue)){ // 숫자일 때
+        fomulaValue += btnValue;
+
+      }else { // 숫자가 아닐때
+        if(btnValue != undefined){// 버튼을 클릭하면 > 화면의 다른 부분을 클릭한게 아님
+          switch (btnValue) {
+            case "C":
+              fomulaValue = "";
+              fomula.innerText = "";
+              break;
+            case ".":
+              fomulaValue += btnValue;
+              break;          
+            default:
+              let result = "";
+              if(btnValue == "="){
+                result = extractValue(fomulaValue);
+              }
+              fomulaValue += ` ${btnValue} `;
+
+              if (result.toString()){
+                fomulaValue += result;
+              }
+              break;
+          }
+        }
+      }
+      fomula.innerText = fomulaValue;
+    });
+  </script>
+</body>
+</html>
