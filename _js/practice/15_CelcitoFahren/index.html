@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>섭씨를 화씨로</title>
+</head>
+<body>
+  <h1>
+    한국에 있는 친구가 미국에 있는 미쿡 친구에게 온도를 알려주고 싶다고 가정
+  </h1>
+  <ul>
+    <li>
+      섭씨 온도를 입력하면 화씨 온도를 출력해주는 시스템
+    </li>
+    <li>
+      입력한 섭씨 온도는 섭씨 배열에 계속해서 저장(버튼사용)이 되고
+    </li>
+    <li>
+      저장된 섭씨 온도는 화씨온도로 변환되서 화씨 온도의 배열로 저장
+    </li>
+    <li>
+      출력버튼을 클릭하면 섭씨온도 => 화씨온도의 리스트 형태로 출력
+    </li>
+  </ul>
+  섭씨 온도 입력 : <input type="number" id="celci">
+  <button type="button" id="sbmBtn">섭씨 온도 저장</button>
+  <!-- <button type="button" id="printBtn">섭씨 to 화씨 출력</button> -->
+  <ol id="printZone"></ol>
+  <script>
+    const celciArr = [];
+    const fahrenArr = [];
+    const printZone = document.getElementById('printZone');
+
+    function celciToFahren(celci) {
+      fahrenArr[fahrenArr.length] = (celci * (9/5)) + 32;
+      // console.log(fahrenArr);
+      printList();
+    }
+    function printList() {
+      printZone.innerHTML
+        += `<li>${celciArr[celciArr.length-1]} => ${fahrenArr[fahrenArr.length-1]}</li>`;
+    }
+    document.getElementById('sbmBtn').addEventListener('click',function(){
+      let celci = parseFloat(document.getElementById('celci').value);
+      celciArr[celciArr.length] = celci;
+      // console.log(celciArr);
+      celciToFahren(celciArr[celciArr.length-1]); // celci도 가능
+    });
+    // document.getElementById('printBtn').addEventListener('click', printList);
+  </script>
+</body>
+</html>
