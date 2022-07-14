@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마지막 신청자의 점수는?</title>
+</head>
+<body>
+  <h1>
+    랜덤으로 100명의 신청자의 점수를 만들어 배열에 담아 첫번째, 마지막 신청자의 점수를 출력하세요. 단 100이라는 숫자를 사용하지 말 것
+  </h1>
+  <h1 id="printResult"></h1>
+  <script>
+    const applicant = [];
+    let applicantLen = 0;
+
+    do {
+      applicantLen = applicant.push(((Math.random()*50) + 51).toFixed(2));
+      if(applicantLen.toString().length == 3){
+        applicantLen--;
+      }      
+    } while (applicant.length == applicantLen);
+    console.log(applicant);
+    
+    document.getElementById('printResult').innerText
+    = `첫번째 신청자 점수 : ${applicant.shift()}, 마지막 신청자 점수 : ${applicant.pop()}`;
+  </script>
+</body>
+</html>
