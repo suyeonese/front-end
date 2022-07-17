@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>데이터 순환</title>
+  </head>
+  <body>
+    <h1>주어진 데이터를 순환하여 원하는 조건에 맞는 정보를 출력하기</h1>
+    <ol>
+      <li>
+        데이터의 exchanges에서 통화이름만 가져와 새로운 배열에 저장한 후 출력
+      </li>
+      <li>
+        exchanges의 각 통화 변화율 중 가장 큰 변화를 보인 객체 정보를 출력
+      </li>
+      <li>
+        gold의 포인트 정보와 변화율을 분석하여 전일(yesterday)의 포인트 값을 추정하여 출력
+      </li>
+    </ol>
+    <script src="index.js"></script>
+    <script>
+      // Q1.
+      const valueArr = [];
+      let keyName = 'name';
+      exs.exchanges.forEach(function(el, i, arr){
+        // el은 object        
+        valueArr.push(el[keyName]);
+      });
+      console.log(valueArr);
+
+      const nameArr = exs.exchanges.map(function(el){
+        return el[keyName];
+      });
+      console.log(nameArr);
+
+      // Q2.
+      let high = 0; 
+      const bigger = exs.exchanges.filter(function(el){
+        if(Math.abs(el.updown) > high){
+          high = Math.abs(el.updown);
+          return true;
+        }
+        // for (const key in el) {
+        //   if(key == 'updown'){
+        //     if(high < Math.abs(el[key])){
+        //       high = Math.abs(el[key]);
+        //       return true;
+        //     }
+        //   }
+        // }
+      });
+      // const topObj = bigger.pop();
+      console.log(bigger.pop());
+
+      // Q3.
+      const points = exs.gold.map(function(el){
+        let yesterday = 0;
+        for(const key in el){
+          if(key == 'point'){
+            yesterday = el[key];
+          }
+          if(key == 'updown'){
+            yesterday -= el[key];
+          }
+        }
+        return yesterday;
+      });
+      console.log(`어제의 국제금시세 : ${points[0]}, 국내금시세 : ${points[1]}`);  
+    </script>
+  </body>
+</html>
