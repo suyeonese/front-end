@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로또추첨기 Ver 2.0</title>
+  </head>
+  <body>
+    <h1>
+      1 ~ 45 까지의 중복되지 않는 숫자 6개가 랜덤으로 추출후 순서대로
+      출력하기<br />
+      단, Set 객체를 사용하지 않고 중복검사 로직을 만들어서 구현할 것
+    </h1>
+    <button type="button" id="makeRandom">랜덤번호 6개 출력하기</button>
+    <h1 id="printNum"></h1>
+    <script>
+      document
+        .getElementById("makeRandom")
+        .addEventListener("click", function () {
+          const lottoArr = [];
+
+          // do {
+          //   let rNum = Math.floor(Math.random()*45)+1;
+          //   if(!lottoArr.includes(rNum)){
+          //     lottoArr.push(rNum);
+          //   }
+          // } while (lottoArr.length < 6);
+
+          for (let i = lottoArr.length; i < 6; i++) {
+            let rNum = Math.floor(Math.random() * 45) + 1;
+            lottoArr.push(rNum);
+
+            for (let j = 0; j < i; j++) {
+              if (rNum == lottoArr[j]) {
+                lottoArr.pop();
+                i--;
+                break;
+              }
+            }
+          }
+
+          document.getElementById("printNum").innerText = lottoArr.sort(
+            function (a, b) {
+              return a - b;
+            }
+          );
+        });
+    </script>
+  </body>
+</html>

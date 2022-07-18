@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로또추첨기 Ver 1.0</title>
+</head>
+<body>
+  <h1>
+    1 ~ 45 까지의 중복되지 않는 숫자 6개가 랜덤으로 추출후 순서대로 출력하기<br>
+    단, Set 객체를 사용할 것
+  </h1>
+  <button type="button" id="makeRandom">랜덤번호 6개 출력하기</button>
+  <h1 id="printNum"></h1>
+  <script>
+    document.getElementById('makeRandom').addEventListener('click',function(){
+      const rNumSet = new Set();
+      // console.log(rNumSet.size);
+
+      // do {
+      //   rNumSet.add(Math.floor(Math.random()*45)+1);
+      // } while (rNumSet.size < 6);
+
+      for (let i = 1;  rNumSet.size < 6; i++) {
+        let rNum = Math.floor(Math.random()*45)+1;
+        rNumSet.add(rNum);
+        console.log(i, rNum); // 반복문이 실행된 횟수 : 추출된 번호
+      }
+
+      const rNumArr = [];
+      for (const rNum of rNumSet) {
+        rNumArr.push(rNum);
+      }
+      document.getElementById('printNum').innerText 
+      = rNumArr.sort(function(a, b) {return a - b});
+    });
+  </script>
+</body>
+</html>
