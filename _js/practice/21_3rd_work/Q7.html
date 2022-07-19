@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz 7</title>
+  </head>
+  <body>
+    <h1>Q7. 호텔 객실 관리 프로그램 만들기 (도전용)</h1>
+    <ul>
+      <li>5층, 각 층당 10호실, 총 50개의 객실보유한 호텔</li>
+      <li>
+        메뉴버튼종류 > 객실현황보기, 입실, 퇴실, 초기화 > 클릭하면 기능 수행
+      </li>
+      <li>
+        관리할 호수 입력받고 각 기능 버튼을 클릭하는 프로세스 (간단하게 만들 수
+        있는 형태)
+      </li>
+      <li>
+        객실현황보기 버튼 > 방번호, 입실시간, 퇴실처리시간, 사용중 or 빈방
+        이라는 정보 출력
+      </li>
+      <li>입실 > 사용중이면 입실불가, 빈방이면 입실완료 후 방정보 변경처리</li>
+      <li>퇴실 > 빈방이면 퇴실불가, 사용중이면 퇴실완료 후 방정보 변경처리</li>
+      <li>초기화 > 모든 방정보를 리셋</li>
+    </ul>
+    <!-- w1 start-->
+    <h1>호텔 객실관리 프로그램</h1>
+    방번호 : <input type="text" id="roomInput" maxlength="3" /><br />
+    <button type="button" id="status">객실현황</button>
+    <button type="button" id="checkIn">입실</button>
+    <button type="button" id="checkOut">퇴실</button>
+    <button type="button" id="reset">모든 방 초기화</button>
+    <hr />
+    <div id="roomStatus"></div>
+    <!-- w1 end-->
+    <!-- <script src="Q7_hotel.js"></script> -->
+    <script>
+      const hotel = [];
+hotelInitialize(5, 10);
+
+document.getElementById('reset').addEventListener('click', ()=>{
+  for (let i = 0; i < hotel.length; i++) {
+    for (let j = 0; j < hotel[i].length; j++) {
+      let room = hotel[i][j];
+      room.checkIn = "";
+      room.checkOut = "";
+      room.occupied = false;      
+    }
+  }
+  document.getElementById('roomStatus').innerHTML
+    = '<h1>모든 방 초기화 완료!</h1>';
+  // console.log(hotel);
+});
+
+document.getElementById('checkOut').addEventListener('click', ()=>{
+  let roomNum = document.getElementById('roomInput').value; //string
+  // let floorIdx = parseInt(roomNum[0])-1;
+  // let roomIdx = parseInt(roomNum.substring(1))-1;
+  // const room = hotel[floorIdx][roomIdx];
+
+  const room = getRoomObject(roomNum);
+
+  if(room.occupied) { // 사용중
+    room.occupied = false;
+    room.checkIn = "";
+    room.checkOut = new Date();
+    document.getElementById('roomStatus').innerHTML
+    = `<h1>${roomNum}호 퇴실을 완료 하였습니다!</h1>`;
+  }else{ // 빈 방
+    document.getElementById('roomStatus').innerHTML
+    = '<h1>빈 방입니다!</h1>';
+  }
+});
+
+document.getElementById('checkIn').addEventListener('click', ()=>{
+  let roomNum = document.getElementById('roomInput').value; //string
+  // let floorIdx = parseInt(roomNum[0])-1;
+  // let roomIdx = parseInt(roomNum.substring(1))-1;
+  // const room = hotel[floorIdx][roomIdx];
+
+  const room = getRoomObject(roomNum);
+
+  if(room.occupied) { // 사용중
+    document.getElementById('roomStatus').innerHTML
+    = '<h1>사용 중인 방입니다!</h1>';
+  }else{ // 빈 방
+    room.occupied = true;
+    room.checkIn = new Date();
+    room.checkOut = '';
+    document.getElementById('roomStatus').innerHTML
+    = `<h1>${roomNum}호 입실을 완료 하였습니다!</h1>`;
+  }
+});
+
+document.getElementById('status').addEventListener('click', ()=>{
+  let table = '<table border="1">';
+  // console.log(hotel.length, hotel[0]);
+  for (let i = hotel.length-1; i >= 0; i--) {
+    table += '<tr>';
+    for (let j = 0; j < hotel[i].length; j++) {
+      table += `<td>`;
+      table += `<ul>`;
+      table += `<li>방번호:${hotel[i][j].rn}</li>`;
+      table += `<li>입실시간:${hotel[i][j].checkIn}</li>`;
+      table += `<li>퇴실시간:${hotel[i][j].checkOut}</li>`;
+      table += `<li>${hotel[i][j].occupied ? "사용중" : "빈 방"}</li>`;
+      table += `</ul>`;
+      table += `</td>`;
+    }
+    table += '</tr>';
+  }
+  table += '</table>';
+  document.getElementById('roomStatus').innerHTML = table;
+});
+
+function getRoomObject(roomNum) {
+  let floorIdx = parseInt(roomNum[0])-1;
+  let roomIdx = parseInt(roomNum.substring(1))-1;
+  return hotel[floorIdx][roomIdx];
+}
+
+function hotelInitialize(floor, rooms) {
+  for (let i = 0; i < floor; i++) {
+    let floors = [];
+    for (let j = 0; j < rooms; j++) {
+      let room = {};
+      room.rn = `${i+1}${j < 9 ? "0" : ""}${j+1}`;
+      room.checkIn = "";
+      room.checkOut = "";
+      room.occupied = false;      
+      floors.push(room);
+    }
+    hotel.push(floors);
+  }
+  // console.log(hotel);
+}
+    </script>
+  </body>
+</html>

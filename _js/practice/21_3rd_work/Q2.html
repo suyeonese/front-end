@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz 2</title>
+</head>
+<body>
+  <h1>
+    Q2. 0 ~ 1000 사이 정수 5개를 랜덤으로 생성하여 가장 큰 수와 작은 수 출력하기 (복습용)
+  </h1>
+  <button type="button" id="btn">랜덤 정수 만들기</button>
+  <h1 id="nums"></h1>
+  <h1>
+    Min : <span id="min"></span>
+    Max : <span id="max"></span>
+  </h1>
+  <script>
+    document.getElementById('btn').addEventListener('click', () => {
+      const rNums = [];
+      for (let i = 0; i < 5; i++) {
+        rNums.push(Math.floor(Math.random()*1001));
+      }      
+      document.getElementById('nums').innerText = rNums;
+
+      // rNums.sort(function(a, b){return a-b});
+      rNums.sort((a, b) => a - b);
+
+      // document.getElementById('min').innerText = rNums[0];
+      document.getElementById('min').innerText = rNums.shift();
+
+      // document.getElementById('max').innerText = rNums[rNums.length-1];
+      document.getElementById('max').innerText = rNums.pop();
+    });
+  </script>
+</body>
+</html>

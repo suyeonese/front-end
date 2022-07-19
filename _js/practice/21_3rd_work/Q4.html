@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz 4</title>
+  </head>
+  <body>
+    <h1>
+      Q4. 입력할 인원수를 입력받고 각 인원의 이름과 나이를 입력받으면
+      리스트(배열 혹은 ol태그)로 출력하기 (과제용)
+    </h1>
+    입력할 인원수 : <input type="number" id="pCount" />
+    <button type="button" id="countBtn">확인</button>
+    <hr />
+    <div id="inputArea">
+      <!-- 이름: <input type="text" id="uname"> | 
+    나이: <input type="number" id="uage"> -->
+    </div>
+    <ol id="printPeople"></ol>
+    <script>
+      var pCount = 0;
+      const people = [];
+      document.getElementById("countBtn").addEventListener("click", () => {
+        pCount = parseInt(document.getElementById("pCount").value);
+        let inputArea = document.getElementById("inputArea");
+
+        for (let i = 0; i < pCount; i++) {
+          inputArea.innerHTML += `이름: <input type="text" id="uname${i}">, 나이: <input type="number" id="uage${i}"><br>`;
+        }
+        inputArea.innerHTML += `<button type="button" id="printBtn">출력</button>`;
+      });
+      document.addEventListener("click", (e) => {
+        if (e.target.id == "printBtn") {
+          console.log("프린트 버튼 작동 확인");
+
+          for (let i = 0; i < pCount; i++) {
+            let pInfo = { uname: "", uage: 0 };
+            pInfo.uname = document.getElementById(`uname${i}`).value;
+            pInfo.uage = document.getElementById(`uage${i}`).value;
+            people.push(pInfo);
+          }
+          printPeople();
+        }
+      });
+      function printPeople() {
+        let printPeople = document.getElementById('printPeople');
+        let lis = '';
+        for (const pInfo of people) {
+          lis += `<li>이름: ${pInfo.uname}, 나이: ${pInfo.uage}</li>`;
+        }
+        printPeople.innerHTML = lis;
+      }
+    </script>
+  </body>
+</html>

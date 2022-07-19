@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz 6</title>
+</head>
+<body>
+  <h1>
+    Q6. 데이터를 입력할 인원수를 입력받고, 각 개인의 HTML, CSS, JS 과목의 점수를 입력하면 각 과목 점수, 총점, 평균을 html의 리스트나 table 태그에 출력하기 (과제용)
+  </h1>
+  인원수 입력 : <input type="number" id="pCount">
+  <button type="button" id="btn">확인</button>
+  <hr>
+  <div id="inputs">
+    HTML: <input type="number" id="html"><br>
+    CSS: <input type="number" id="css"><br>
+    JS: <input type="number" id="js"><br>
+    <button type="button" id="sbmBtn">제출</button>
+  </div>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>HTML</th>
+        <th>CSS</th>
+        <th>JS</th>
+        <th>TOTAL</th>
+        <th>AVG</th>
+      </tr>
+    </thead>
+    <tbody id="print">
+
+    </tbody>
+  </table>
+  <script>
+    let pCount = 0;
+    const subjects = {html:[], css:[], js:[], total:[], avg:[]};
+    document.getElementById('btn').addEventListener('click', ()=>{
+      pCount = parseInt(document.getElementById('pCount').value);
+      document.getElementById('btn').disabled = 'disabled';
+    });
+    document.getElementById('sbmBtn').addEventListener('click', ()=>{
+      let htmlScore = parseInt(document.getElementById('html').value);
+      let cssScore = parseInt(document.getElementById('css').value);
+      let jsScore = parseInt(document.getElementById('js').value);
+      // let total = htmlScore+cssScore+jsScore;
+      // let avg = (total / 3).toFixed(1);
+
+      subjects.html.push(htmlScore);
+      subjects.css.push(cssScore);
+      subjects.js.push(jsScore);
+      subjects.total.push(htmlScore+cssScore+jsScore);
+      subjects.avg.push((subjects.total[subjects.total.length-1]/3).toFixed(1));
+
+      if(subjects.avg.length > pCount-1){
+        document.getElementById('sbmBtn').disabled = 'disabled';
+        makeTable();
+      }
+    });
+    function makeTable() {
+      const tbodyTag = document.getElementById('print');
+      let lines = '';
+      for (let i = 0; i < pCount; i++) {        
+        lines += '<tr>';
+        lines += `<td>${subjects.html[i]}</td>`;
+        lines += `<td>${subjects.css[i]}</td>`;
+        lines += `<td>${subjects.js[i]}</td>`;
+        lines += `<td>${subjects.total[i]}</td>`;
+        lines += `<td>${subjects.avg[i]}</td></tr>`;
+      }
+      tbodyTag.innerHTML = lines;
+    }
+  </script>
+</body>
+</html>

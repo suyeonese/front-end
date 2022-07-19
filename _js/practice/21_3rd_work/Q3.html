@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz 3</title>
+  </head>
+  <body>
+    <h1>
+      Q3. 2자리 이상의 양의 정수를 입력하고 그 수까지의 홀수의 합과 짝수의 합을
+      출력하기 (복습용)
+    </h1>
+    2자리의 양의 정수 입력 : <input type="number" id="input" min="10" />
+    <button type="button" id="btn">출력</button>
+    <h1 id="print"></h1>
+    <script>
+      document.getElementById("btn").addEventListener("click", () => {
+        const num = document.getElementById("input").value;
+        if (num < 10) {
+          alert("10 이상의 숫자를 입력하세요!");
+          document.getElementById("input").focus();
+        } else {
+          const totals = { odd: 0, even: 0 };
+          for (let i = 0; i <= parseInt(num); i++) {
+            if (i % 2 == 0) {
+              totals.even += i;
+            } else {
+              totals.odd += i;
+            }
+          }
+          document.getElementById(
+            "print"
+          ).innerText = `홀수의 합: ${totals.odd}, 짝수의 합: ${totals.even}`;
+        }
+      });
+    </script>
+  </body>
+</html>

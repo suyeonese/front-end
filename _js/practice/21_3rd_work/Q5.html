@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz 5</title>
+</head>
+<body>
+  <h1>
+    Q5. 6과목 점수를 입력하면 평균 90이상 : A부터 10점 간격으로 B, C, D, 60점 미만은 F를 판단하여 출력하기 (과제용)
+  </h1>
+  과목점수 입력 : <input type="number" id="score" min="50" max="100">
+  <button type="button" id="btn">입력</button>
+  <ol id="printScore"></ol>
+  <h1 id="grade"></h1>
+  <script>
+    const scores = [];
+    document.getElementById('btn').addEventListener('click', ()=>{
+      let score = parseInt(document.getElementById('score').value);
+      scores.push(score);      
+      document.getElementById('printScore').innerHTML += `<li>${score}</li>`;
+
+      if (scores.length > 5) {
+        document.getElementById('btn').disabled = 'disabled';
+
+        operationScores();
+      }
+    });
+    function operationScores(){
+      // let total = scores.reduce((t, v) => t + v);
+
+      let total = scores.reduce(function(t, v){
+        return t + v; // total = total + value, total += value
+      });
+      
+      let avg = (total / scores.length).toFixed(1);
+      document.getElementById('grade').innerText
+      = `등급 : ${avg > 90 ? 'A' : avg > 80 ? 'B' : avg > 70 ? 'C' : avg > 60 ? 'D' : 'F'}, 총점: ${total}, 평균: ${avg}`;
+
+      // const h1 = document.getElementById('grade');
+      // let grade = "";
+      // if(avg > 90) {
+      //   grade = 'A';
+      // }else if(avg > 80) {
+      //   grade = 'B';
+      // }else if(avg > 70){
+      //   grade = 'C';
+      // }else if(avg > 60){
+      //   grade = 'D';
+      // }else {
+      //   grade = 'F';
+      // }
+      // h1.innerText = `등급 : ${grade}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz 1</title>
+</head>
+<body>
+  <h1>
+    Q1. 영화 제목 5개를 입력받고 출력하기 (복습용)
+  </h1>
+  <ol>
+    <li>
+      영화 제목 : <input type="text" id="mv1" value="아이언맨">
+    </li>
+    <li>
+      영화 제목 : <input type="text" id="mv2" value="닥터 스트레인저2">
+    </li>
+    <li>
+      영화 제목 : <input type="text" id="mv3" value="스파이더맨 파 프롬 홈">
+    </li>
+    <li>
+      영화 제목 : <input type="text" id="mv4" value="조커">
+    </li>
+    <li>
+      영화 제목 : <input type="text" id="mv5" value="해리포터 마법사의 돌">
+    </li>
+  </ol>
+  <button type="button" id="btn">입력값 출력</button>
+  <ul id="printList"></ul>
+  <script>
+    document.getElementById('btn').onclick = function(){
+      let mv1 = document.getElementById('mv1').value;
+      let mv2 = document.getElementById('mv2').value;
+      let mv3 = document.getElementById('mv3').value;
+      let mv4 = document.getElementById('mv4').value;
+      let mv5 = document.getElementById('mv5').value;
+
+      const mvs = [mv1, mv2, mv3, mv4, mv5];
+
+      let printList = document.getElementById('printList');
+
+      let liTags = '';
+
+      for (let i = 0; i < mvs.length; i++) {
+        liTags += `<li>${mvs[i]}</li>`;
+      }
+
+      for (const mv of mvs) {
+        liTags += `<li>${mv}</li>`;
+      }
+      printList.innerHTML = liTags;
+    };
+  </script>
+</body>
+</html>
