@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Travel</h1>
+    <ul>
+        <li><a id="home" onclick="clickCity(this);">Home</a></li>
+        <li><a id="seoul" onclick="clickCity(this);">Seoul</a></li>
+        <li><a id="tokyo" onclick="clickCity(this);">Tokyo</a></li>
+        <li><a id="paris" onclick="clickCity(this);">Paris</a></li>        
+    </ul>
+    <img src="images/home.jpg" alt="Home" id="cityImg">
+    <script>
+        function clickCity(elem) {
+            let idVal = elem.id;
+            console.log(idVal);
+            document.getElementById('cityImg').src = `images/${idVal}.jpg`;
+            // document.getElementById(idVal).style.fontWeight = 'bold';
+        }
+    </script>
+</body>
+</html>
