@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <form action="">
+      <input type="text" class="text-field" placeholder="아이디"><br>
+      <input type="password" class="text-field" placeholder="비밀번호"><br>
+      <input type="submit" class="btn-input" value="로그인" disabled>
+    </form>
+    <div class="links">
+      <a href="#">비밀번호를 잊어버리셨나요</a>
+    </div>
+  </div>
+  <script>
+    const btn = document.querySelector('.btn-input');
+    const inputs = document.querySelectorAll('.text-field');
+    // console.log(inputs);
+    inputs[0].addEventListener('input', () => {
+      let upw = document.getElementsByClassName('text-field')[1].value;
+        if(upw.length > 7){
+          // 버튼의 활성화 조건 만족
+          let uid = document.getElementsByClassName('text-field')[0].value;
+            if(uid.length > 7 ){
+              btn.style.setProperty('background-color','rgb(27, 188, 155)');
+              btn.disabled = false;
+            }
+        }else {
+          btn.style.setProperty('background-color','#aaa');
+          btn.disabled = true;
+        }
+    });
+    inputs[1].addEventListener('input', () => {
+      let uid = document.getElementsByClassName('text-field')[0].value;
+        if(uid.length > 7){
+          // 버튼의 활성화 조건 만족
+          let upw = document.getElementsByClassName('text-field')[1].value;
+            if(upw.length > 7 ){
+              btn.style.setProperty('background-color','rgb(27, 188, 155)');
+              btn.disabled = false;
+            }
+        }else {
+          btn.style.setProperty('background-color','#aaa');
+          btn.disabled = true;
+        }
+    });
+    
+  </script>
+</body>
+</html>
