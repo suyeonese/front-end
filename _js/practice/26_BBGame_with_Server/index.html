@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>숫자 야구 게임</title>
+  </head>
+  <body>
+    <h1>
+      컴퓨터가 0 ~ 9 의 중복되지 않는 정수 3개를 랜덤으로 출제하면 맞추는 게임
+    </h1>
+    <ul>
+      <li>
+        야구게임 기록을 서버에 저장하여 조회 및 삭제를 할 수 있게 만들어 볼 것
+      </li>
+      <li>
+        서버측의 데이터 키(객체의 키)는 수정이 불가능하므로 재해석이 필요함
+      </li>
+      <li>
+        id : 자동생성, name: 게임실행유저이름 or 컴퓨터의 정답
+      </li>
+      <li>
+        description : 컴퓨터의 정답 or 유저가 시도한 내용 및 결과
+      </li>
+      <li>
+        price : 소요된 시간, category_id : 총 시도 횟수 or 한 게임 동안 총 스트라이크 수
+      </li>
+      <li>
+        created: 게임종료시간, modified: 자동 생성
+      </li>
+      <li>
+        게임 종료시 게임기록은 자동저장 or 버튼을 만들어 저장
+      </li>
+      <li>
+        게임기록 조회는 리스트로 삭제는 리스트의 각 라인 우측에 삭제버튼을 제작 => 클릭하면 해당 라인 삭제
+      </li>
+      
+    </ul>
+    
+    <hr style="border-width: 5px; background-color: brown" />
+    <button type="button" id="startBtn">게임 시작</button>
+    <h1 id="comMsg"></h1>
+    숫자 추측하기: <input type="text" id="myNum" />
+    <button type="button" id="tryBtn">추측확인</button>
+    <ol id="tries"></ol>
+    <button type="button" id="historyBtn">게임기록 확인</button>
+    <ol id="history"></ol>
+
+    <script>
+      // 입력받는 자리수, 숫자인지, 중복값의 유효성 검사 추가해보기~
+      const comSet = new Set();
+      let comNums = [];
+      let count = 0;
+      const duration = { start: 0, finish: 0 };
+      const gameHistory = [];
+
+      document.getElementById("startBtn").addEventListener("click", makeGame);
+      document.getElementById("tryBtn").addEventListener("click", compareNum);
+      document
+        .getElementById("historyBtn")
+        .addEventListener("click", printHistory);
+
+      function printHistory() {
+        let historyElem = document.getElementById("history");
+        historyElem.innerHTML = "";
+        gameHistory.sort((a, b) => a.gap - b.gap);
+        for (const game of gameHistory) {
+          historyElem.innerHTML += `<li>${game.date}, ${game.gap}, ${game.tries}</li>`;
+        }
+      }
+      function validMyNum(myNum){
+        // 3자리의 숫자
+        if(myNum.length != 3){
+          return false;
+        }else if(isNaN(myNum)){ // 숫자냐?
+          return false;
+        }else if (new Set(myNum.split("")).size != 3){
+          return false;
+        } else{
+          return true;
+        }
+      }
+
+      function compareNum() {
+        document.getElementById("comMsg").innerText = "";
+        count++;
+        let myNumElem = document.getElementById("myNum");
+        // 유효성검사의 시작 시점
+        if (validMyNum(myNumElem.value)) {
+          let myNums = myNumElem.value.split("");
+          console.log(myNums);
+          let strike = 0,
+            ball = 0;
+
+          for (let i = 0; i < comNums.length; i++) {
+            // 컴숫자를 기준으로
+            for (let j = 0; j < myNums.length; j++) {
+              // 내 숫자를 비교한다
+              if (comNums[i] == myNums[j]) {
+                // 컴의 숫자와 내 숫자가 같은 상황에서
+                if (i == j) {
+                  // 자리수도 같다 => strike
+                  strike++;
+                } else {
+                  // 자리수가 다르다 => ball
+                  ball++;
+                }
+                break;
+              }
+            }
+          } // 비교판정 종료
+
+          if (strike == 0 && ball == 0) {
+            document.getElementById("tries").innerHTML += `<li> OUT! </li>`;
+          } else {
+            if (strike == 3) {
+              duration.finish = new Date();
+              saveToGameHistory();
+            } else {
+              document.getElementById(
+                "tries"
+              ).innerHTML += `<li>${myNums} => ${strike}Strike, ${ball}Ball</li>`;
+            }
+          }
+        } else {
+          document.getElementById('comMsg').innerText = '유효하지 않는 입력값입니다!';
+        }
+          myNumElem.value = "";
+          myNumElem.focus();
+      }
+      function saveToGameHistory() {
+        // 게임기록정보: 진행시점, 걸린시간, 시도횟수
+        let gameInfo = {
+          date: new Date(),
+          gap: (duration.finish - duration.start) / 1000,
+          tries: count,
+        };
+        console.log(gameInfo);
+        gameHistory.push(gameInfo);
+      }
+
+      function makeGame() {
+        comSet.clear();
+        comNums = [];
+        count = 0;
+        document.getElementById("tries").innerHTML = "";
+        do {
+          let rNum = Math.floor(Math.random() * 10);
+          comSet.add(rNum);
+        } while (comSet.size < 3);
+        console.log(comSet);
+        document.getElementById("comMsg").innerText =
+          "컴퓨터가 숫자를 정하였습니다!";
+        comSet.forEach(function (v) {
+          comNums.push(v);
+        });
+        console.log(comNums);
+        duration.start = new Date();
+      }
+    </script>
+  </body>
+</html>
