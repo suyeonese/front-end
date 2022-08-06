@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>on() method</title>
+</head>
+<body>
+  <h1>
+    on('event', 'target selector', 'binding data', callback function, map)
+  </h1>
+  <ul>
+    <li>
+      'event' : 이벤트 종류를 문자열로 입력
+    </li>
+    <li>
+      'target selector' : 이벤트를 부여할 최종 target을 css selector로 지정
+    </li>
+    <li>
+      'binding data' : callback function에 전달할 데이터
+    </li>
+    <li>
+      callback function : 콜백함수의 이름 또는 익명함수 선언문
+    </li>
+    <li id="except">
+      map : 자주 사용하지 않으므로 pass => 추후 예시를 찾아서 학습해보시길...
+    </li>
+  </ul>
+  <script src="../resources/jquery-3.6.0.min.js"></script>
+  <script>
+    $(function () {
+      $('ul').append('<li><button type="button" id="newBtn">동적으로 만든 버튼</button>');
+        $('#newBtn').on('click', function(){ // function 안으로 넣으면 실행 되지만
+        alert('동적으로 만든   버튼 클릭!');
+        });
+    });
+    // $('#newBtn').on('click', function(){ // 얘가 읽힐 때는 newBtn 버튼이 없음! function 밖에서는 실행이 안됨
+    //   alert('동적으로 만든   버튼 클릭!');
+    // })
+
+    $(document).on('click', '#newBtn', function() { // jquery 버젼
+      alert('동적으로 만든 버튼 클릭!');
+      $('#except').css('color', 'red').css('text-decoration', 'line-through')
+    });
+
+    // document.addEventListener('click', function (e) { // js 버젼
+    //   if(e.target.id == 'newBtn'){
+    //     alert('click!!!!');
+    //   }
+    // });
+
+    $()
+  </script>
+</body>
+</html>
