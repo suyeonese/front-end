@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat</title>
+</head>
+<body>
+  <div>
+    <div class="header">
+      pass
+    </div>
+    <div class="chatbox">
+      <div class="chat left">잘지내?</div>
+      <div class="chat left">자니?</div>
+    </div>
+    <div class="textbox">
+      <textarea placeholder="대화내용이 들어갑니다."></textarea>
+      <button id="send">전송</button>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    function sendChat() {
+      let msg = $('textarea').val();
+      if(msg != '') {
+        $('.chatbox').append('<div class="chat right">'+msg+'</div>');
+        $('textarea').val("");
+        $('textarea').focus();        
+      }
+      
+    }
+    $('#send').on('click', sendChat);
+  </script>
+</body>
+</html>
